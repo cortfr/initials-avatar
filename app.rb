@@ -1,7 +1,7 @@
 class InitialsAvatar < Sinatra::Base
   # Canvas sizes
-  DEFAULT_OUTPUT_SIZE = 100
-  MIN_CANVAS_SIZE = 100
+  DEFAULT_OUTPUT_SIZE = 70
+  MIN_CANVAS_SIZE = 70
 
   # Font size as a proportion of the canvas
   FONT_RATIO = 0.45
@@ -17,7 +17,7 @@ class InitialsAvatar < Sinatra::Base
   HEX_REGEX = /([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 
   get "/" do
-    redirect "https://github.com/loopj/initials-avatar"
+    redirect "http://www.apptoto.com/"
   end
 
   get "/:initials.?:format?" do
