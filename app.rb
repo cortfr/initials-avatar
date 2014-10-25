@@ -28,6 +28,8 @@ class InitialsAvatar < Sinatra::Base
     bg = initials[1] if initials.length > 1
     initials = initials[0]
 
+    return "No thanks" if initials.length > 3
+    
     # Background color
     background_color = bg ? bg : (params[:bg] ? "#{params[:bg]}" : "DBDBDB")
     background_color = "#" << background_color if background_color =~ HEX_REGEX
