@@ -23,8 +23,13 @@ class InitialsAvatar < Sinatra::Base
   get "/:initials.?:format?" do
     content_type "image/png"
 
+    # Support initials_color
+    initials = params[:initials].split("_")
+    bg = initials[1] if initials.length > 1
+    initials = initials[0]
+
     # Background color
-    background_color = params[:bg] ? "#{params[:bg]}" : "DBDBDB"
+    background_color = bg ? bg : (params[:bg] ? "#{params[:bg]}" : "DBDBDB")
     background_color = "#" << background_color if background_color =~ HEX_REGEX
 
     # Fill / Foreground color
@@ -42,7 +47,7 @@ class InitialsAvatar < Sinatra::Base
     end
 
     # Create the text annotation
-    Magick::Draw.new.annotate(img, canvas_size,canvas_size,0,canvas_size*Y_OFFSET, params[:initials][0..2].upcase) do
+    Magick::Draw.new.annotate(img, canvas_size,canvas_size,0,canvas_size*Y_OFFSET, initials[0..2].upcase) do
       self.fill = fill
       self.gravity = Magick::CenterGravity
       self.pointsize = canvas_size*FONT_RATIO
