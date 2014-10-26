@@ -26,20 +26,22 @@ class InitialsAvatar < Sinatra::Base
     # Support initials_color
     initials = params[:initials].split("_")
     bg = initials[1] if initials.length > 1
+    fg = initials[2] if initials.length > 2
+    size = initials[3] if initials.length > 3
     initials = initials[0]
 
     return "No thanks" if initials.length > 3
-    
+
     # Background color
     background_color = bg ? bg : (params[:bg] ? "#{params[:bg]}" : "DBDBDB")
     background_color = "#" << background_color if background_color =~ HEX_REGEX
 
     # Fill / Foreground color
-    fill = params[:fg] ? "#{params[:fg]}" : "000000"
+    fill = fg ? fg : (params[:fg] ? "#{params[:fg]}" : "000000")
     fill = "#" << fill if fill =~ HEX_REGEX
 
     # Output/canvas sizes
-    output_size = params[:s] ? params[:s].to_i : DEFAULT_OUTPUT_SIZE
+    output_size = size ? size.to_i : (params[:s] ? params[:s].to_i : DEFAULT_OUTPUT_SIZE)
     canvas_size = [output_size, MIN_CANVAS_SIZE].max
 
     # Create the canvas
