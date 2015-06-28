@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    newrelic_rpm (3.12.0.288)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -15,5 +16,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   rmagick
   sinatra
